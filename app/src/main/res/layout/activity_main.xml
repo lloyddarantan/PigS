@@ -3,112 +3,505 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:padding="32dp">
+    android:background="#FFFFFF"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:padding="16dp">
 
-        <!-- Logo Placeholder (Replace with cropped logo from image_5e3110.png) -->
-        <ImageView
-            android:id="@+id/ivLogo"
-            android:layout_width="200dp"
-            android:layout_height="120dp"
-            android:layout_marginTop="32dp"
-            android:src="@drawable/logo"
-            android:contentDescription="PigSensor Logo"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Your everyday pig monitoring needs"
-            android:textColor="@color/pig_pink"
-            android:textSize="14sp"
-            android:layout_marginTop="8dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign In"
-            android:textColor="@color/pig_red"
-            android:textSize="48sp"
-            android:fontFamily="serif"
-            android:textStyle="italic"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"/>
-
-        <!-- Email Field -->
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- Top Header: Logo & Elevated Search Bar -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="EMAIL ADDRESS"
-            app:hintTextColor="@color/text_hint"
-            app:boxBackgroundColor="@android:color/transparent"
-            app:boxStrokeColor="@color/pig_pink">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/pig_pink"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            <!-- PigSensor Logo -->
+            <ImageView
+                android:id="@+id/imgLogo"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="PigSensor Logo"
+                android:scaleType="fitCenter"
+                android:src="@drawable/smalllogo" />
 
-        <!-- Password Field -->
-        <com.google.android.material.textfield.TextInputLayout
+            <!-- Search Card with Soft Elevation -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="4dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="14dp">
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="@color/search_hint_pink" />
+
+                    <EditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="Search Pig #"
+                        android:paddingHorizontal="8dp"
+                        android:textColor="@color/text_dark"
+                        android:textColorHint="@color/search_hint_pink"
+                        android:textSize="15sp" />
+
+                    <!-- Vertical Pink Line Divider -->
+                    <View
+                        android:layout_width="1.5dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@color/search_hint_pink" />
+
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@android:drawable/ic_menu_camera"
+                        app:tint="@color/search_hint_pink" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- 4 Top Action Chips (Elevated Pink Pills) -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:hint="PASSWORD"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleTint="@color/pig_pink"
-            app:hintTextColor="@color/text_hint"
-            app:boxBackgroundColor="@android:color/transparent"
-            app:boxStrokeColor="@color/pig_pink">
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textColor="@color/pig_pink"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/pink_chip_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="0dp">
 
-        <!-- Continue Button -->
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnContinue"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="48dp"
-            android:background="@drawable/bg_button_rounded"
-            android:text="CONTINUE"
-            android:textColor="@color/white"
-            android:textSize="16sp"/>
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="@color/white" />
+            </com.google.android.material.card.MaterialCardView>
 
-        <!-- Bottom Links -->
-        <RelativeLayout
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/pink_chip_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_compass"
+                    app:tint="@color/white" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginHorizontal="4dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/pink_chip_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_agenda"
+                    app:tint="@color/white" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="0dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                app:cardBackgroundColor="@color/pink_chip_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="3dp"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@android:drawable/ic_menu_preferences"
+                    app:tint="@color/white" />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+        <!-- Main Section: Health Summary & Temperature Status -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp">
+            android:layout_marginTop="16dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvForgotPassword"
-                android:layout_width="wrap_content"
+            <!-- Left: Pig Health Summary -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:text="Forgot Password?"
-                android:textColor="@color/pig_pink"/>
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvCreateAccount"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pig Health Summary"
+                    android:textColor="@color/text_dark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card_pink"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <!-- Profile Header -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/pigdash"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="001"
+                                android:textColor="@color/text_dark"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Healthy ✔"
+                                android:textColor="@color/text_purple"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="📅 2 yrs  ⚖ 110.0 kg"
+                                android:textColor="@color/text_muted"
+                                android:textSize="9sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Health Details Table -->
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp">
+
+                        <TableRow android:layout_marginBottom="8dp">
+                            <TextView android:text="❤️ Overall Health" android:textColor="@color/text_dark" android:textSize="11sp" />
+                            <TextView android:gravity="end" android:text="Excellent" android:textColor="@color/text_green" android:textSize="11sp" android:textStyle="bold" />
+                        </TableRow>
+
+                        <TableRow android:layout_marginBottom="8dp">
+                            <TextView android:text="💧 Water Refill" android:textColor="@color/text_dark" android:textSize="11sp" />
+                            <TextView android:gravity="end" android:text="30 min" android:textColor="@color/text_orange" android:textSize="11sp" android:textStyle="bold" />
+                        </TableRow>
+
+                        <TableRow android:layout_marginBottom="8dp">
+                            <TextView android:text="🌡️ Temperature" android:textColor="@color/text_dark" android:textSize="11sp" />
+                            <TextView android:gravity="end" android:text="Normal" android:textColor="@color/text_green" android:textSize="11sp" android:textStyle="bold" />
+                        </TableRow>
+
+                        <TableRow>
+                            <TextView android:text="😊 Movements" android:textColor="@color/text_dark" android:textSize="11sp" />
+                            <TextView android:gravity="end" android:text="Active" android:textColor="@color/text_green" android:textSize="11sp" android:textStyle="bold" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Right: Temperature Status Table -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:text="Create Account →"
-                android:textColor="@color/pig_red"/>
-        </RelativeLayout>
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Temperature Status"
+                    android:textColor="@color/text_dark"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card_green"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TableLayout
+                        android:id="@+id/tableTemperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:stretchColumns="*">
+
+                        <!-- Fixed Header with Column Separation -->
+                        <TableRow android:layout_marginBottom="8dp">
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="RFID"
+                                android:textColor="@color/text_dark"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="Temp 🌡️"
+                                android:textColor="@color/text_dark"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Reminder Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Reminder !"
+            android:textColor="@color/text_dark"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <!-- Left Alerts -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_green"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Heat Index for June 10 is 43° 🔥"
+                        android:textColor="@color/text_dark"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dangerous Temperature"
+                        android:textColor="@color/text_red"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bg_card_green"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pig # 003 Temperature is High"
+                        android:textColor="@color/text_dark"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dangerous Temperature 🔥"
+                        android:textColor="@color/text_red"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Right Water Refill & Vaccination -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_card_blue"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pig Pen Water Refill in"
+                            android:textColor="@color/text_dark"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="30 min"
+                            android:textColor="@color/text_blue"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⌛"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnVaccination"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:cardBackgroundColor="@color/btn_dark"
+                    app:cardCornerRadius="14dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Vaccination"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:src="@android:drawable/ic_menu_add"
+                            app:tint="@color/white" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Live Camera Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="LIVE CAMERA"
+            android:textColor="@color/live_camera_red"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="8dp"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="2dp">
+
+            <ImageView
+                android:id="@+id/imgThermalCamera"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_background" />
+        </com.google.android.material.card.MaterialCardView>
+
     </LinearLayout>
 </ScrollView>

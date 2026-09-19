@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "PigS"
+rootProject.name = "PigS_Dashboard"
 include(":app")
  

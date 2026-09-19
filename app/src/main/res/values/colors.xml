@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="pig_pink">#FF8A8A</color>
-    <color name="pig_red">#FA5656</color>
-    <color name="text_hint">#FFB6B9</color>
-    <color name="white">#FFFFFF</color>
+    	<color name="pig_pink">#FF8A8A</color>
+    	<color name="pig_red">#FA5656</color>
+    	<color name="text_hint">#FFB6B9</color>
+	<color name="black">#FF000000</color>
+	<color name="white">#FFFFFFFF</color>
+<!--  Design Palette  -->
+	<color name="pink_primary">#FF687E</color>
+	<color name="pink_chip_bg">#F9A8B0</color>
+	<color name="search_hint_pink">#FF7E93</color>
+	<color name="card_pink_bg">#FFF0F4</color>
+	<color name="card_green_bg">#EBF8F0</color>
+	<color name="card_green_stroke">#C1EBD4</color>
+	<color name="card_blue_bg">#EBF5FB</color>
+	<color name="card_blue_stroke">#B2E0F7</color>
+<!--  Text Colors  -->
+	<color name="text_dark">#1A1A1A</color>
+	<color name="text_muted">#7A7A7A</color>
+	<color name="text_purple">#8E24AA</color>
+	<color name="text_green">#2E7D32</color>
+	<color name="text_red">#D32F2F</color>
+	<color name="text_blue">#1976D2</color>
+	<color name="text_orange">#E65100</color>
+	<color name="live_camera_red">#FF5252</color>
+	<color name="btn_dark">#1F1F1F</color>
 </resources>
