@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
                 // Already on Dashboard
                 return true;
             } else if (id == R.id.temp_id) {
-                Intent intent = new Intent(MainActivity.this, ThermalCamActivity.class);
+                Intent intent = new Intent(MainActivity.this, TempReadingActivity.class);
                 startActivity(intent);
                 return true;
             } else if (id == R.id.tutorial_id) {
