@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFFFFF">
+    android:background="#FFFFFF"
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -290,6 +290,7 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <!-- Reminder Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -313,10 +314,15 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
+                    <!-- Heat Index Card (Clickable & Identified) -->
                     <LinearLayout
+                        android:id="@+id/cardHeatIndex"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bg_card_green"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?android:attr/selectableItemBackground"
                         android:orientation="vertical"
                         android:padding="10dp">
 
@@ -363,7 +369,7 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <!-- Right Water Refill & Vaccination -->
+                <!-- Right Alerts: Water Refill & Vaccination -->
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"

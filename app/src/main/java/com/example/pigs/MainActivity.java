@@ -1,10 +1,12 @@
 package com.example.pigs;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -13,7 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
-import com.example.pigs.controller.LoginActivity; // Make sure this matches your package structure
+import com.example.pigs.controller.LoginActivity;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TableLayout tableTemperature;
     private MaterialCardView btnVaccination;
     private TextView tvWelcomeMessage;
+    private LinearLayout cardHeatIndex;
     private ImageView imgThermalCam;
 
     private final String[][] temperatureData = {
@@ -36,46 +41,73 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
+        // Bind all views
         imgLogo = findViewById(R.id.imgLogo);
         tableTemperature = findViewById(R.id.tableTemperature);
         btnVaccination = findViewById(R.id.btnVaccination);
         tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
+        cardHeatIndex = findViewById(R.id.cardHeatIndex);
         imgThermalCam = findViewById(R.id.imgThermalCam);
 
+        // Populate table data
         populateTemperatureTable();
 
+        // Handle User Email Intent
         String userEmail = getIntent().getStringExtra("USER_EMAIL");
         if (userEmail != null && tvWelcomeMessage != null) {
             tvWelcomeMessage.setText("Welcome, \n" + userEmail);
         }
 
-        //logout na di
+        // Open Heat Index Calendar Dialog
+        if (cardHeatIndex != null) {
+            cardHeatIndex.setOnClickListener(v -> showCalendarDialog());
+        }
+
+        // Logout listener
         if (imgLogo != null) {
             imgLogo.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                // Clear the back stack so the user can't press back to return here
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();
             });
         }
 
+        // Vaccination button listener
         if (btnVaccination != null) {
             btnVaccination.setOnClickListener(v ->
                     Toast.makeText(MainActivity.this, "Vaccination Module Clicked", Toast.LENGTH_SHORT).show()
             );
         }
 
+        // Thermal Camera image listener
         if (imgThermalCam != null) {
             imgThermalCam.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, ThermalCamActivity.class);
                 startActivity(intent);
             });
         }
+    }
 
+    private void showCalendarDialog() {
+        final Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(
+                MainActivity.this,
+                R.style.CustomDatePickerTheme,
+                (view, selectedYear, selectedMonth, selectedDay) -> {
+                    String selectedDate = (selectedMonth + 1) + "/" + selectedDay + "/" + selectedYear;
+                    Toast.makeText(MainActivity.this, "Selected Date: " + selectedDate, Toast.LENGTH_SHORT).show();
+                },
+                year, month, day
+        );
+
+        datePickerDialog.show();
     }
 
     private void populateTemperatureTable() {
