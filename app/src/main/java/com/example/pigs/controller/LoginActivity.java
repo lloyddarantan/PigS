@@ -2,11 +2,13 @@ package com.example.pigs.controller;
 
 import android.content.Intent; // Added missing import for Intent
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
+
 import com.example.pigs.R;
 import com.example.pigs.MainActivity;
 import com.example.pigs.model.User;
@@ -43,25 +45,43 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // Kept only the version that handles the navigation to MainActivity
     private void handleLoginAttempt() {
         String emailInput = etEmail.getText().toString().trim();
         String passwordInput = etPassword.getText().toString().trim();
 
+        if (emailInput.isEmpty()) {
+            Toast.makeText(this, "Email address cannot be empty.", Toast.LENGTH_SHORT).show();
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
+            Toast.makeText(this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
+            etEmail.requestFocus();
+            return;
+        }
+
+        if (passwordInput.isEmpty()) {
+            Toast.makeText(this, "Password cannot be empty.", Toast.LENGTH_SHORT).show();
+            etPassword.requestFocus();
+            return;
+        }
+
+        if (passwordInput.length() < 6) {
+            Toast.makeText(this, "Password must be at least 6 characters.", Toast.LENGTH_SHORT).show();
+            etPassword.requestFocus();
+            return;
+        }
+
         User currentUser = new User(emailInput, passwordInput);
 
         if (currentUser.isValid()) {
-            // SUCCESS: Navigate to MainActivity
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-            // Pass the email data to the next screen
             intent.putExtra("USER_EMAIL", currentUser.getEmail());
-
             startActivity(intent);
-            finish(); // Closes LoginActivity so the back button doesn't return to it
-
+            finish();
         } else {
-            Toast.makeText(this, "Please enter a valid email and a 6+ char password.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Login failed. Please check your credentials.", Toast.LENGTH_LONG).show();
         }
     }
 }

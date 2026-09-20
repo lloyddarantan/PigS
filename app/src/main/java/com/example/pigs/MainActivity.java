@@ -9,11 +9,13 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
-import com.example.pigs.controller.LoginActivity; // Make sure this matches your package structure
+import com.example.pigs.controller.LoginActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,13 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //logout na di
         if (imgLogo != null) {
-            imgLogo.setOnClickListener(v -> {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                // Clear the back stack so the user can't press back to return here
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            });
+            imgLogo.setOnClickListener(v -> showLogoutConfirmationDialog());
         }
 
         if (btnVaccination != null) {
@@ -75,7 +71,50 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             });
         }
+//still no functionality for bottom navigation
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
 
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.pig_dash) {
+                // Already on Dashboard
+                return true;
+            } else if (id == R.id.temp_id) {
+                Intent intent = new Intent(MainActivity.this, ThermalCamActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (id == R.id.tutorial_id) {
+                Toast.makeText(this, "Tutorial Module", Toast.LENGTH_SHORT).show();
+                return true;
+            } else if (id == R.id.support_id) {
+                Toast.makeText(this, "Support Module", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+
+            return false;
+        });
+    }
+
+    private void showLogoutConfirmationDialog() {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle("Sign Out")
+                .setMessage("Are you sure you want to sign out of PigSensor?")
+                .setPositiveButton("Confirm", (d, which) -> {
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    // Clear the back stack so the user can't press back to return here
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("Cancel", (d, which) -> d.dismiss())
+                .create();
+
+        dialog.show();
+
+        // Apply theme colors to the modal buttons after showing the dialog
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(Color.parseColor("#FA5656")); // pig_red
+        dialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(Color.parseColor("#FF8A8A")); // pig_pink
     }
 
     private void populateTemperatureTable() {
