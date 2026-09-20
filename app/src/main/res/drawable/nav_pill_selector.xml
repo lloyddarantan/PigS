@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Active State -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#F8C3C8" /> <!-- Light Pink -->
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+    <!-- Inactive State -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#F8C3C8" /> <!-- Or #00000000 for transparent when inactive -->
+            <corners android:radius="14dp" />
+        </shape>
+    </item>
+</selector>

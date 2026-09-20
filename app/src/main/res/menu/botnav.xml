@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/pig_dash"
+        android:icon="@drawable/ic_pig"
+        android:title="Pig" />
+    <item
+        android:id="@+id/temp_id"
+        android:icon="@drawable/ic_thermometer"
+        android:title="Temp" />
+    <item
+        android:id="@+id/tutorial_id"
+        android:icon="@drawable/ic_cap"
+        android:title="Tutorial" />
+    <item
+        android:id="@+id/support_id"
+        android:icon="@drawable/ic_wrench"
+        android:title="Support" />
+</menu>
