@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TableLayout tableTemperature;
     private MaterialCardView btnVaccination;
     private TextView tvWelcomeMessage;
+    private ImageView imgThermalCam;
 
     private final String[][] temperatureData = {
             {"001", "Normal"},
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         tableTemperature = findViewById(R.id.tableTemperature);
         btnVaccination = findViewById(R.id.btnVaccination);
         tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
+        imgThermalCam = findViewById(R.id.imgThermalCam);
 
         populateTemperatureTable();
 
@@ -66,6 +68,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Vaccination Module Clicked", Toast.LENGTH_SHORT).show()
             );
         }
+
+        if (imgThermalCam != null) {
+            imgThermalCam.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, ThermalCamActivity.class);
+                startActivity(intent);
+            });
+        }
+
     }
 
     private void populateTemperatureTable() {

@@ -462,11 +462,11 @@
                 app:cardElevation="2dp">
 
                 <ImageView
-                    android:id="@+id/imgThermalCamera"
+                    android:id="@+id/imgThermalCam"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background" />
+                    android:src="@drawable/livecam" />
             </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>

@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">PigS</string>
+    <string name="back">Back</string>
+    <string name="thermal_camera">Thermal Camera</string>
+
+    <string name="live_thermal_feed">Live thermal feed</string>
+    <string name="content_desc_thermal_feed">Thermal Camera Feed</string>
+
+    <string name="pig_label_format">Pig #%s</string>
+    <string name="pig_rfid_details_format">RFID: %1$s   %2$s Pig   %3$s mo</string>
+    <string name="temp_celsius_format">%s°C</string>
+
+    <string name="status_asf_symptom">Possible ASF symptom - flag for vet</string>
+    <string name="status_elevated">Monitor closely • elevated</string>
+    <string name="status_normal">Normal range • Healthy</string>
+
+    <string name="pig_id_003">003</string>
+    <string name="pig_title_003">Pig #003</string>
+
+    <string name="pig_id_011">011</string>
+    <string name="pig_title_011">Pig #011</string>
+
+    <string name="pig_id_001">001</string>
+    <string name="pig_title_001">Pig #001</string>
+
+    <string name="pig_id_002">002</string>
+    <string name="pig_title_002">Pig #002</string>
+
+    <string name="pig_id_004">004</string>
+    <string name="pig_title_004">Pig #004</string>
+
+    <string name="pig_id_008">008</string>
+    <string name="pig_title_008">Pig #008</string>
+
+    <string name="rfid_details_003">RFID: A-0034   ♀ Pig   14 mo</string>
+    <string name="rfid_details_011">RFID: A-0112   ♂ Pig   9 mo</string>
+    <string name="rfid_details_001">RFID: A-0011   ♀ Pig   22 mo</string>
+    <string name="rfid_details_002">RFID: A-0022   ♀ Pig   18 mo</string>
+    <string name="rfid_details_004">RFID: A-5432   ♂ Pig   11 mo</string>
+    <string name="rfid_details_008">RFID: A-0088   ♀ Pig   16 mo</string>
+
+    <string name="temp_40_9">40.9°C</string>
+    <string name="temp_38_4">38.4°C</string>
+    <string name="temp_38_7">38.7°C</string>
+    <string name="temp_38_3">38.3°C</string>
+    <string name="temp_38_5">38.5°C</string>
 </resources>
