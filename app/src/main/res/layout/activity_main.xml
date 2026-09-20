@@ -162,6 +162,8 @@
         </LinearLayout>
 
         <!-- Main Section: Health Summary & Temperature Status -->
+
+        <!-- Reminder Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -245,23 +247,63 @@
                         android:layout_marginTop="14dp">
 
                         <TableRow android:layout_marginBottom="8dp">
-                            <TextView android:text="❤️ Overall Health" android:textColor="@color/text_dark" android:textSize="11sp" />
-                            <TextView android:gravity="end" android:text="Excellent" android:textColor="@color/text_green" android:textSize="11sp" android:textStyle="bold" />
+
+                            <TextView
+                                android:text="Overall Health"
+                                android:textColor="@color/text_dark"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:gravity="end"
+                                android:text="Excellent"
+                                android:textColor="@color/text_green"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow android:layout_marginBottom="8dp">
-                            <TextView android:text="💧 Water Refill" android:textColor="@color/text_dark" android:textSize="11sp" />
-                            <TextView android:gravity="end" android:text="30 min" android:textColor="@color/text_orange" android:textSize="11sp" android:textStyle="bold" />
+
+                            <TextView
+                                android:text="Water Refill"
+                                android:textColor="@color/text_dark"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:gravity="end"
+                                android:text="30 min"
+                                android:textColor="@color/text_orange"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow android:layout_marginBottom="8dp">
-                            <TextView android:text="🌡️ Temperature" android:textColor="@color/text_dark" android:textSize="11sp" />
-                            <TextView android:gravity="end" android:text="Normal" android:textColor="@color/text_green" android:textSize="11sp" android:textStyle="bold" />
+
+                            <TextView
+                                android:text="Temperature"
+                                android:textColor="@color/text_dark"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:gravity="end"
+                                android:text="Normal"
+                                android:textColor="@color/text_green"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
                         </TableRow>
 
                         <TableRow>
-                            <TextView android:text="😊 Movements" android:textColor="@color/text_dark" android:textSize="11sp" />
-                            <TextView android:gravity="end" android:text="Active" android:textColor="@color/text_green" android:textSize="11sp" android:textStyle="bold" />
+
+                            <TextView
+                                android:text="Movements"
+                                android:textColor="@color/text_dark"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:gravity="end"
+                                android:text="Active"
+                                android:textColor="@color/text_green"
+                                android:textSize="11sp"
+                                android:textStyle="bold" />
                         </TableRow>
                     </TableLayout>
                 </LinearLayout>
@@ -299,6 +341,7 @@
 
                         <!-- Fixed Header with Column Separation -->
                         <TableRow android:layout_marginBottom="8dp">
+
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
@@ -313,7 +356,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="end"
-                                android:text="Temp 🌡️"
+                                android:text="Temp"
                                 android:textColor="@color/text_dark"
                                 android:textSize="13sp"
                                 android:textStyle="bold" />
@@ -323,7 +366,6 @@
             </LinearLayout>
         </LinearLayout>
 
-        <!-- Reminder Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

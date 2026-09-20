@@ -1,5 +1,6 @@
 package com.example.pigs;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -10,15 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
 import com.google.android.material.card.MaterialCardView;
+import com.example.pigs.controller.LoginActivity; // Make sure this matches your package structure
 
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imgLogo;
     private TableLayout tableTemperature;
     private MaterialCardView btnVaccination;
+    private TextView tvWelcomeMessage;
 
     private final String[][] temperatureData = {
             {"001", "Normal"},
@@ -33,36 +35,42 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showMainScreen();
-    }
 
-    // Load and bind activity_main.xml
-    private void showMainScreen() {
         setContentView(R.layout.activity_main);
 
         imgLogo = findViewById(R.id.imgLogo);
         tableTemperature = findViewById(R.id.tableTemperature);
         btnVaccination = findViewById(R.id.btnVaccination);
+        tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
 
         populateTemperatureTable();
 
-        imgLogo.setOnClickListener(v -> showLoginScreen());
+        String userEmail = getIntent().getStringExtra("USER_EMAIL");
+        if (userEmail != null && tvWelcomeMessage != null) {
+            tvWelcomeMessage.setText("Welcome, \n" + userEmail);
+        }
 
-        btnVaccination.setOnClickListener(v ->
-                Toast.makeText(MainActivity.this, "Vaccination Module Clicked", Toast.LENGTH_SHORT).show()
-        );
-    }
+        //logout na di
+        if (imgLogo != null) {
+            imgLogo.setOnClickListener(v -> {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                // Clear the back stack so the user can't press back to return here
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
+            });
+        }
 
-    // Load and bind activity_login.xml
-    private void showLoginScreen() {
-        setContentView(R.layout.activity_login);
-
-        AppCompatButton btnContinue = findViewById(R.id.btnContinue);
-
-        btnContinue.setOnClickListener(v -> showMainScreen());
+        if (btnVaccination != null) {
+            btnVaccination.setOnClickListener(v ->
+                    Toast.makeText(MainActivity.this, "Vaccination Module Clicked", Toast.LENGTH_SHORT).show()
+            );
+        }
     }
 
     private void populateTemperatureTable() {
+        if (tableTemperature == null) return;
+
         for (String[] data : temperatureData) {
             TableRow row = new TableRow(this);
             TableRow.LayoutParams rowParams = new TableRow.LayoutParams(
