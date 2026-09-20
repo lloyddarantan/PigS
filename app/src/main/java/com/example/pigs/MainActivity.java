@@ -1,10 +1,12 @@
 package com.example.pigs;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -16,6 +18,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.card.MaterialCardView;
 import com.example.pigs.controller.LoginActivity;
+import com.example.pigs.controller.LoginActivity;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private TableLayout tableTemperature;
     private MaterialCardView btnVaccination;
     private TextView tvWelcomeMessage;
+    private LinearLayout cardHeatIndex;
     private ImageView imgThermalCam;
 
     private final String[][] temperatureData = {
@@ -38,13 +44,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
 
         imgLogo = findViewById(R.id.imgLogo);
         tableTemperature = findViewById(R.id.tableTemperature);
         btnVaccination = findViewById(R.id.btnVaccination);
         tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
+        cardHeatIndex = findViewById(R.id.cardHeatIndex);
         imgThermalCam = findViewById(R.id.imgThermalCam);
 
         populateTemperatureTable();
@@ -54,7 +60,12 @@ public class MainActivity extends AppCompatActivity {
             tvWelcomeMessage.setText("Welcome, \n" + userEmail);
         }
 
-        //logout na di
+        // Open Heat Index Calendar Dialog
+        if (cardHeatIndex != null) {
+            cardHeatIndex.setOnClickListener(v -> showCalendarDialog());
+        }
+
+        // Logout listener
         if (imgLogo != null) {
             imgLogo.setOnClickListener(v -> showLogoutConfirmationDialog());
         }

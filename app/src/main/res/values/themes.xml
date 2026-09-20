@@ -1,9 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Base.Theme.PigS" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Customize your light theme here -->
     </style>
 
     <style name="Theme.PigS" parent="Base.Theme.PigS" />
+
+    <!-- Custom Date Picker Theme (Matching your app's pink theme) -->
+    <style name="CustomDatePickerTheme" parent="Theme.Material3.DayNight.Dialog">
+        <!-- Header background & selected date circle color -->
+        <item name="colorPrimary">#F8BBD0</item>
+        <item name="colorOnPrimary">#1A1A1A</item>
+
+        <!-- Background of the pop-up dialog -->
+        <item name="android:colorBackground">#FFFFFF</item>
+
+        <!-- Text color for days and dates -->
+        <item name="android:textColorPrimary">#1A1A1A</item>
+        <item name="android:textColorSecondary">#757575</item>
+
+        <!-- "OK" and "CANCEL" button text color -->
+        <item name="colorSecondary">#B71C1C</item>
+    </style>
 </resources>
