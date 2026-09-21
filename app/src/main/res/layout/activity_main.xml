@@ -266,6 +266,19 @@
                         android:orientation="vertical"
                         android:padding="12dp">
 
+                        <TextClock
+                            android:id="@+id/textClock"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginBottom="12dp"
+                            android:format12Hour="hh:mm:ss a"
+                            android:format24Hour="HH:mm:ss"
+                            android:timeZone="Asia/Manila"
+                            android:textColor="@color/text_dark"
+                            android:textSize="15sp"
+                            android:textStyle="bold" />
+
                         <TableLayout
                             android:id="@+id/tableTemperature"
                             android:layout_width="match_parent"
@@ -293,6 +306,8 @@
                                     android:textColor="@color/text_dark"
                                     android:textSize="13sp"
                                     android:textStyle="bold" />
+
+
                             </TableRow>
                         </TableLayout>
                     </LinearLayout>

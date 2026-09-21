@@ -13,6 +13,8 @@
         android:theme="@style/Theme.PigS">
 
         <activity android:name=".MainActivity" />
+        <activity android:name=".TempReadingActivity" />
+
         <activity
             android:name=".controller.LoginActivity"
             android:exported="true"
