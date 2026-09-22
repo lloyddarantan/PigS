@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.example.pigs.R;
 import com.example.pigs.MainActivity;
 import com.example.pigs.model.User;
+import com.example.pigs.controller.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -41,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         tvCreateAccount.setOnClickListener(v -> {
-            Toast.makeText(this, "Create Account clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 
