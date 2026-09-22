@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- permissions used -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,10 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PigS">
 
+        <!-- activities used -->
         <activity android:name=".MainActivity" />
         <activity android:name=".TempReadingActivity" />
         <activity android:name=".SupportActivity" />
         <activity android:name=".controller.RegisterActivity" />
+        <activity android:name=".TutorialActivity" />
+
+
 
         <activity
             android:name=".controller.LoginActivity"

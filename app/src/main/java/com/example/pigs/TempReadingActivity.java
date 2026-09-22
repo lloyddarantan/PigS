@@ -34,7 +34,9 @@ public class TempReadingActivity extends AppCompatActivity {
                     // Already on Temperature Monitor screen
                     return true;
                 } else if (id == R.id.tutorial_id) {
-                    // Handle tutorial navigation
+                    Intent intent = new Intent(TempReadingActivity.this, TutorialActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 } else if (id == R.id.support_id) {
                     // Handle support navigation

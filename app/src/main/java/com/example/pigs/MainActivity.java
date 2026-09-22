@@ -108,7 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             } else if (id == R.id.tutorial_id) {
-                Toast.makeText(this, "Tutorial Module", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, TutorialActivity.class);
+                startActivity(intent);
                 return true;
             } else if (id == R.id.support_id) {
                 // Launches SupportActivity containing the RatingBar
