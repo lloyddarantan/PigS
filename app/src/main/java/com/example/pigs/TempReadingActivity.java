@@ -38,6 +38,9 @@ public class TempReadingActivity extends AppCompatActivity {
                     return true;
                 } else if (id == R.id.support_id) {
                     // Handle support navigation
+                    Intent intent = new Intent(TempReadingActivity.this, SupportActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 }
                 return false;

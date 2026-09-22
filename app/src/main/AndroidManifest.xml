@@ -14,6 +14,7 @@
 
         <activity android:name=".MainActivity" />
         <activity android:name=".TempReadingActivity" />
+        <activity android:name=".SupportActivity" />
 
         <activity
             android:name=".controller.LoginActivity"

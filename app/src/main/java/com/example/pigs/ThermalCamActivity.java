@@ -44,7 +44,9 @@ public class ThermalCamActivity extends AppCompatActivity {
                     Toast.makeText(this, "Tutorial Module", Toast.LENGTH_SHORT).show();
                     return true;
                 } else if (id == R.id.support_id) {
-                    Toast.makeText(this, "Support Module", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(ThermalCamActivity.this, SupportActivity.class);
+                    startActivity(intent);
+                    finish();
                     return true;
                 }
                 return false;

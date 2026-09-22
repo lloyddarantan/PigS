@@ -100,7 +100,9 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Tutorial Module", Toast.LENGTH_SHORT).show();
                 return true;
             } else if (id == R.id.support_id) {
-                Toast.makeText(this, "Support Module", Toast.LENGTH_SHORT).show();
+                // Launches SupportActivity containing the RatingBar
+                Intent intent = new Intent(MainActivity.this, SupportActivity.class);
+                startActivity(intent);
                 return true;
             }
 
