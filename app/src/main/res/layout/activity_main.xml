@@ -498,7 +498,44 @@
                     android:scaleType="centerCrop"
                     android:src="@drawable/livecam" />
             </com.google.android.material.card.MaterialCardView>
+            
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnNews"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="12dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/btn_dark"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="2dp">
+                
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp">
+                
+                 <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="NEWS"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+            
+                    <ImageView
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:src="@android:drawable/ic_menu_view"
+                        app:tint="@color/white" />
+            
+                        </LinearLayout>
 
+                </com.google.android.material.card.MaterialCardView>
+            
         </LinearLayout>
     </ScrollView>
 
