@@ -12,6 +12,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.TextClock;
 import android.widget.Toast;
+import android.net.Uri;
+import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvWelcomeMessage;
     private LinearLayout cardHeatIndex;
     private ImageView imgThermalCam;
+    private MaterialCardView btnNews;
 
     private final String[][] temperatureData = {
             {"001", "Normal"},
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
         cardHeatIndex = findViewById(R.id.cardHeatIndex);
         imgThermalCam = findViewById(R.id.imgThermalCam);
+        btnNews = findViewById(R.id.btnNews);
 
         populateTemperatureTable();
 
@@ -75,6 +79,13 @@ public class MainActivity extends AppCompatActivity {
             btnVaccination.setOnClickListener(v ->
                     Toast.makeText(MainActivity.this, "Vaccination Module Clicked", Toast.LENGTH_SHORT).show()
             );
+        }
+        if (btnNews != null) {
+            btnNews.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://www.philstar.com/nation/2026/08/05/2547027/negros-asf-hit-areas-now-17"));
+                startActivity(intent);
+            });
         }
 
         if (imgThermalCam != null) {
