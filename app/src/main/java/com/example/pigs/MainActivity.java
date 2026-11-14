@@ -13,6 +13,9 @@ import android.widget.TextView;
 import android.widget.TextClock;
 import android.widget.Toast;
 import android.net.Uri;
+import android.content.Intent;
+
+import android.widget.FrameLayout;
 import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setupNotificationsButton();
 
         imgLogo = findViewById(R.id.imgLogo);
         tableTemperature = findViewById(R.id.tableTemperature);
@@ -121,6 +125,31 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
     }
+
+
+    // NOTIF BUTTON
+
+    private void setupNotificationsButton() {
+
+        // Find the Notifications button from activity_main.xml
+        FrameLayout btnNotifications =
+                findViewById(R.id.btnNotifications);
+
+        if (btnNotifications != null) {
+
+            // Open Notifications Page when clicked
+            btnNotifications.setOnClickListener(v -> {
+
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        NotificationsActivity.class
+                );
+
+                startActivity(intent);
+            });
+        }
+    }
+
 
     private void showLogoutConfirmationDialog() {
         AlertDialog dialog = new AlertDialog.Builder(this)

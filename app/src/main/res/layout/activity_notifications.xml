@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="#E85E89"
+            android:paddingStart="14dp"
+            android:paddingEnd="12dp"
+            android:elevation="4dp">
+
+            <TextView
+                android:id="@+id/btnBack"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:gravity="center"
+                android:background="@drawable/bg_circle_pink"
+                android:text="←"
+                android:textColor="#FFFFFF"
+                android:textSize="25sp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Notifications 🔴"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="16sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Farm alerts &amp; care updates"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp"
+                    android:layout_marginTop="3dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnMarkRead"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mark all read"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <!-- NOTIFICATIONS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
+
+            <!-- HIGH TEMPERATURE ALERT -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_alert_pink">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="52dp"
+                        android:layout_height="76dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_icon_pink"
+                        android:text="🌡️"
+                        android:textSize="32sp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="High Temperature Alert"
+                            android:textColor="#111111"
+                            android:textStyle="bold"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pig #003 temperature reached 40.9°C\n- Above Safe threshold"
+                            android:textColor="#D4537A"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="2 min ago"
+                            android:textColor="#AAAAAA"
+                            android:textSize="10sp"
+                            android:layout_marginTop="6dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_danger_pink"
+                        android:padding="8dp"
+                        android:text="Danger!"
+                        android:textColor="#E53935"
+                        android:textStyle="bold"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/bg_unread_dot"/>
+
+            </FrameLayout>
+
+            <!-- DANGEROUS HEAT INDEX -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_alert_yellow">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="52dp"
+                        android:layout_height="76dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_icon_yellow"
+                        android:text="🌡️☀️"
+                        android:textSize="23sp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Dangerous Heat Index"
+                            android:textColor="#111111"
+                            android:textStyle="bold"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Heat index for today is 43°C. Consider cooling measures immediately"
+                            android:textColor="#D4537A"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="18 min ago"
+                            android:textColor="#AAAAAA"
+                            android:textSize="10sp"
+                            android:layout_marginTop="6dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_danger_yellow"
+                        android:padding="8dp"
+                        android:text="Danger!"
+                        android:textColor="#E53935"
+                        android:textStyle="bold"
+                        android:textSize="11sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/bg_unread_dot"/>
+
+            </FrameLayout>
+
+            <!-- WATER REFILL -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_alert_blue">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="52dp"
+                        android:layout_height="76dp"
+                        android:gravity="center"
+                        android:background="@drawable/bg_icon_blue"
+                        android:text="💧"
+                        android:textSize="32sp"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Water Refill Needed"
+                            android:textColor="#111111"
+                            android:textStyle="bold"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pig Pen A water level is low. Refill scheduled in 30 minutes."
+                            android:textColor="#D4537A"
+                            android:textSize="12sp"
+                            android:layout_marginTop="4dp"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="35 min ago"
+                            android:textColor="#AAAAAA"
+                            android:textSize="10sp"
+                            android:layout_marginTop="6dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="⚠"
+                        android:textColor="#F17680"
+                        android:textSize="26sp"/>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:layout_gravity="top|end"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/bg_unread_dot"/>
+
+            </FrameLayout>
+
+            <!-- VACCINATION DUE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_alert_gray"
+                android:padding="14dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="76dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_icon_gray"
+                    android:text="💉"
+                    android:textSize="32sp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Vaccination Due"
+                        android:textColor="#888888"
+                        android:textStyle="bold"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pig #008 vaccination is due this week. contact your vet to set an appointment"
+                        android:textColor="#E4A1B4"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1 hr ago"
+                        android:textColor="#AAAAAA"
+                        android:textSize="10sp"
+                        android:layout_marginTop="6dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚠"
+                    android:textColor="#F2B5B5"
+                    android:textSize="26sp"/>
+
+            </LinearLayout>
+
+            <!-- PIG HEALTH UPDATE -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="112dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_alert_gray"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="52dp"
+                    android:layout_height="76dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_icon_gray"
+                    android:text="🐷"
+                    android:textSize="32sp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pig #003 Health Update"
+                        android:textColor="#888888"
+                        android:textStyle="bold"
+                        android:textSize="15sp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Overall health status changed to excellent. All vitals are normal"
+                        android:textColor="#E4A1B4"
+                        android:textSize="12sp"
+                        android:layout_marginTop="4dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2 hrs ago"
+                        android:textColor="#AAAAAA"
+                        android:textSize="10sp"
+                        android:layout_marginTop="6dp"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚠"
+                    android:textColor="#F2B5B5"
+                    android:textSize="26sp"/>
+
+            </LinearLayout>
+
+            <!-- BACK TO DASHBOARD -->
+            <TextView
+                android:id="@+id/btnDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:text="← Back to Dashboard"
+                android:textColor="#897A80"
+                android:textStyle="bold"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
