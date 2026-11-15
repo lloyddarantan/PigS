@@ -17,7 +17,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.card.MaterialCardView;
 
 public class TutorialActivity extends AppCompatActivity {
 
@@ -31,16 +30,24 @@ public class TutorialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
 
+        // Back button
+        TextView tvBack = findViewById(R.id.tvBack);
+
+        tvBack.setOnClickListener(v -> {
+            finish();
+        });
+
+        // Tutorial sections
         pigTutorials = findViewById(R.id.pigTutorials);
         appTutorials = findViewById(R.id.appTutorials);
 
+        // Category buttons
         btnPig = findViewById(R.id.btnPig);
         btnApp = findViewById(R.id.btnApp);
 
         tvCategoryTitle = findViewById(R.id.tvCategoryTitle);
         etSearch = findViewById(R.id.etSearchTutorial);
 
-        // Category buttons
         btnPig.setOnClickListener(v -> showPigTutorials());
         btnApp.setOnClickListener(v -> showAppTutorials());
 
