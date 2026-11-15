@@ -5,6 +5,8 @@
 
     <string name="live_thermal_feed">Live thermal feed</string>
     <string name="content_desc_thermal_feed">Thermal Camera Feed</string>
+    <string name="detect_count_pigs">Detect &amp; Count Pigs</string>
+    <string name="analyzing">Analyzing...</string>
 
     <string name="pig_label_format">Pig #%s</string>
     <string name="pig_rfid_details_format">RFID: %1$s   %2$s Pig   %3$s mo</string>
