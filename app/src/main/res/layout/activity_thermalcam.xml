@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#FAFAFA"
     android:orientation="vertical"
-    tools:context=".ThermalCamActivity">
+    tools:context=".ThermalCamActivity"
+    tools:theme="@style/Theme.PigS">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,16 +63,37 @@
         app:cardCornerRadius="16dp"
         app:cardElevation="2dp">
 
-        <ImageView
-            android:id="@+id/imgThermalFeed"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#424242"
-            android:clickable="false"
-            android:contentDescription="@string/content_desc_thermal_feed"
-            android:focusable="false"
-            android:scaleType="fitXY"
-            android:src="@drawable/thermal_pig" />
+            android:layout_height="match_parent">
+
+            <androidx.camera.view.PreviewView
+                android:id="@+id/imgThermalFeed"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#424242"
+                android:contentDescription="@string/content_desc_thermal_feed" />
+
+            <com.example.pigs.DetectionOverlayView
+                android:id="@+id/detectionOverlayView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDetectPig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="12dp"
+                android:backgroundTint="#E85580"
+                android:text="@string/detect_count_pigs"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                app:cornerRadius="20dp"
+                app:icon="@drawable/ic_scan"
+                app:iconTint="#FFFFFF" />
+
+        </FrameLayout>
     </androidx.cardview.widget.CardView>
 
     <View
