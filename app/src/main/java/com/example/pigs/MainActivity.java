@@ -48,11 +48,18 @@ public class MainActivity extends AppCompatActivity {
             {"011", "Normal"}
     };
 
+    private int userId;
+    private String userEmail;
+    private String firstName;
+    private String lastName;
+    private String userRole;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupNotificationsButton();
+
 
         imgLogo = findViewById(R.id.imgLogo);
         tableTemperature = findViewById(R.id.tableTemperature);
@@ -61,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
         cardHeatIndex = findViewById(R.id.cardHeatIndex);
         imgThermalCam = findViewById(R.id.imgThermalCam);
         btnNews = findViewById(R.id.btnNews);
+
+
 
         populateTemperatureTable();
 

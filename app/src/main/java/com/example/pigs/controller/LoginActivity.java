@@ -33,6 +33,9 @@ import android.view.animation.OvershootInterpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+
+import com.example.pigs.network.ApiClient;
 import com.example.pigs.MainActivity;
 import com.example.pigs.R;
 import com.example.pigs.model.User;
@@ -43,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputEditText etEmail, etPassword;
     private Button btnContinue;
     private TextView tvForgotPassword, tvCreateAccount;
+    private int loggedInUserId;
+    private String loggedInFirstName;
+    private String loggedInLastName;
+    private String loggedInRole;
 
     private Dialog animationDialog;
 
@@ -132,14 +139,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     // Login validation
+
     private void loginUser() {
 
         String emailInput = etEmail.getText() != null
                 ? etEmail.getText().toString().trim() : "";
 
         String passwordInput = etPassword.getText() != null
-                ? etPassword.getText().toString().trim() : "";
+                ? etPassword.getText().toString() : "";
 
+        // Validate email
         if (emailInput.isEmpty()) {
             etEmail.setError("Please enter your email");
             etEmail.requestFocus();
@@ -152,6 +161,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        // Validate password
         if (passwordInput.isEmpty()) {
             etPassword.setError("Please enter your password");
             etPassword.requestFocus();
@@ -164,25 +174,100 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        User currentUser = new User(emailInput, passwordInput);
+        if (isAnimating) return;
 
-        if (currentUser.isValid()) {
+        btnContinue.setEnabled(false);
+        btnContinue.setText("PLEASE WAIT...");
 
-            if (isAnimating) return;
+        // Authenticate using MySQL through PHP
+        ApiClient.login(
+                emailInput,
+                passwordInput,
+                new ApiClient.ApiCallback() {
 
-            isAnimating = true;
-            btnContinue.setEnabled(false);
+                    @Override
+                    public void onSuccess(org.json.JSONObject response) {
 
-            showLoginAnimation(emailInput);
+                        if (isFinishing() || isDestroyed()) return;
 
-        } else {
-            Toast.makeText(
-                    LoginActivity.this,
-                    "Invalid Username or Password!",
-                    Toast.LENGTH_SHORT
-            ).show();
-        }
+                        org.json.JSONObject user =
+                                response.optJSONObject("user");
+                                loggedInUserId = user.optInt("id");
+
+                                loggedInFirstName = user.optString("first_name");
+
+                                loggedInLastName = user.optString("last_name");
+
+                                loggedInRole = user.optString("role");
+
+                        if (user == null) {
+
+                            btnContinue.setEnabled(true);
+                            btnContinue.setText("CONTINUE");
+
+                            Toast.makeText(
+                                    LoginActivity.this,
+                                    "Unable to retrieve account information.",
+                                    Toast.LENGTH_SHORT
+                            ).show();
+
+                            return;
+                        }
+
+                        loggedInUserId = user.optInt("id");
+                        loggedInFirstName = user.optString("first_name");
+                        loggedInLastName = user.optString("last_name");
+                        loggedInRole = user.optString("role");
+
+                        String userEmail = user.optString("email");
+
+                        isAnimating = true;
+
+                        btnContinue.setText("WELCOME!");
+
+                        // Save account details for MainActivity
+                        Intent intent = new Intent(
+                                LoginActivity.this,
+                                MainActivity.class
+                        );
+
+                        intent.putExtra("USER_ID", user.optInt("id"));
+                        intent.putExtra("USER_EMAIL", userEmail);
+                        intent.putExtra(
+                                "USER_FIRST_NAME",
+                                user.optString("first_name")
+                        );
+                        intent.putExtra(
+                                "USER_LAST_NAME",
+                                user.optString("last_name")
+                        );
+                        intent.putExtra(
+                                "USER_ROLE",
+                                user.optString("role")
+                        );
+
+                        // Keep your existing login animation
+                        showLoginAnimation(userEmail);
+                    }
+
+                    @Override
+                    public void onError(String message) {
+
+                        if (isFinishing() || isDestroyed()) return;
+
+                        btnContinue.setEnabled(true);
+                        btnContinue.setText("CONTINUE");
+
+                        Toast.makeText(
+                                LoginActivity.this,
+                                message,
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        );
     }
+
 
     // Create animation screen
     private void showLoginAnimation(String email) {
@@ -629,6 +714,7 @@ public class LoginActivity extends AppCompatActivity {
                 playOink();
             }
 
+
             @Override
             public void onAnimationEnd(Animator animation) {
 
@@ -639,17 +725,20 @@ public class LoginActivity extends AppCompatActivity {
                         MainActivity.class
                 );
 
+                // Pass logged-in user's information
+                intent.putExtra("USER_ID", loggedInUserId);
                 intent.putExtra("USER_EMAIL", email);
+                intent.putExtra("USER_FIRST_NAME", loggedInFirstName);
+                intent.putExtra("USER_LAST_NAME", loggedInLastName);
+                intent.putExtra("USER_ROLE", loggedInRole);
 
-                // Open MainActivity immediately
                 startActivity(intent);
 
-                // Remove login screen from the back stack
                 finish();
 
-                // Remove transition delay
                 overridePendingTransition(0, 0);
             }
+
         });
 
         exitAnimation.start();

@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pigs.network.ApiClient;
 import com.example.pigs.R;
 import com.example.pigs.model.User;
 import com.google.android.material.button.MaterialButton;
@@ -57,27 +58,79 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerRole.setAdapter(adapter);
     }
 
+
     private void performRegistration() {
+
         clearErrors();
 
         String firstName = etFirstName.getText().toString().trim();
         String lastName = etLastName.getText().toString().trim();
         String email = etEmail.getText().toString().trim();
         String phone = etPhone.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
-        String confirmPassword = etConfirmPassword.getText().toString().trim();
-        String role = spinnerRole.getText().toString().trim();
 
-        if (!validateInputs(firstName, lastName, email, phone, password, confirmPassword)) {
+        // Do not trim passwords; spaces may be intentional.
+        String password = etPassword.getText().toString();
+        String confirmPassword = etConfirmPassword.getText().toString();
+
+        String role = "User";
+
+        if (!validateInputs(
+                firstName,
+                lastName,
+                email,
+                phone,
+                password,
+                confirmPassword
+        )) {
             return;
         }
 
-        User newUser = new User(firstName, lastName, email, phone, password, role);
+        // Prevent multiple registration requests
+        btnCreate.setEnabled(false);
+        btnCreate.setText("CREATING ACCOUNT...");
 
-        Toast.makeText(this, "Account created successfully for " + newUser.getFirstName() + "!", Toast.LENGTH_SHORT).show();
+        ApiClient.register(
+                firstName,
+                lastName,
+                email,
+                phone,
+                password,
+                new ApiClient.ApiCallback() {
 
-        finish();
+                    @Override
+                    public void onSuccess(org.json.JSONObject response) {
+
+                        btnCreate.setEnabled(true);
+                        btnCreate.setText("CREATE ACCOUNT");
+
+                        Toast.makeText(
+                                RegisterActivity.this,
+                                response.optString(
+                                        "message",
+                                        "Account created successfully!"
+                                ),
+                                Toast.LENGTH_LONG
+                        ).show();
+
+                        finish();
+                    }
+
+                    @Override
+                    public void onError(String message) {
+
+                        btnCreate.setEnabled(true);
+                        btnCreate.setText("CREATE ACCOUNT");
+
+                        Toast.makeText(
+                                RegisterActivity.this,
+                                message,
+                                Toast.LENGTH_LONG
+                        ).show();
+                    }
+                }
+        );
     }
+
 
     private boolean validateInputs(String firstName, String lastName, String email, String phone, String password, String confirmPassword) {
         boolean isValid = true;
@@ -102,7 +155,11 @@ public class RegisterActivity extends AppCompatActivity {
             isValid = false;
         }
 
-        if (password.length() < 6) {
+        if (password.isEmpty()) {
+            layoutPassword.setError("Password is required");
+            isValid = false;
+
+        } else if (password.length() < 6) {
             layoutPassword.setError("Password must be at least 6 characters");
             isValid = false;
         }
