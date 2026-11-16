@@ -79,10 +79,18 @@ public class MainActivity extends AppCompatActivity {
             imgLogo.setOnClickListener(v -> showLogoutConfirmationDialog());
         }
 
+// Open Vaccination Dashboard
         if (btnVaccination != null) {
-            btnVaccination.setOnClickListener(v ->
-                    Toast.makeText(MainActivity.this, "Vaccination Module Clicked", Toast.LENGTH_SHORT).show()
-            );
+            btnVaccination.setOnClickListener(v -> {
+
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        VaccinationActivity.class
+                );
+
+                startActivity(intent);
+
+            });
         }
         if (btnNews != null) {
             btnNews.setOnClickListener(v -> {

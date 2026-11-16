@@ -22,4 +22,18 @@
         <!-- "OK" and "CANCEL" button text color -->
         <item name="colorSecondary">#B71C1C</item>
     </style>
+
+    <style name="Theme.PigS.Vaccination"
+        parent="Theme.PigS">
+
+        <item name="colorPrimary">@color/pig_red</item>
+        <item name="colorSecondary">@color/pig_pink</item>
+
+        <item name="android:windowBackground">@color/white</item>
+
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:navigationBarColor">@color/white</item>
+
+
+    </style>
 </resources>

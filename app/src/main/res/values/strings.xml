@@ -46,4 +46,24 @@
     <string name="temp_38_7">38.7°C</string>
     <string name="temp_38_3">38.3°C</string>
     <string name="temp_38_5">38.5°C</string>
+
+    <!-- Vaccination Dashboard -->
+
+    <string name="vaccination_title">PigSensor</string>
+    <string name="vaccination_back">Back</string>
+    <string name="vaccination_search_hint">Search Pig #</string>
+
+    <string name="herd_immunity_score">Herd Immunity Score</string>
+    <string name="herd_immunity_status">✔ OK</string>
+    <string name="herd_protected">96% Protected</string>
+    <string name="herd_pigs_updated">240 / 255 pigs Up to Date</string>
+
+    <string name="upcoming_vaccination">Upcoming Vaccination Schedule</string>
+    <string name="recent_administered">Recent Administered Log</string>
+
+    <string name="due_today">Due Today</string>
+    <string name="administer">Administer</string>
+    <string name="continue_button">CONTINUE</string>
+
+    <string name="pcv2_vaccine">PCV2 Vaccine</string>
 </resources>

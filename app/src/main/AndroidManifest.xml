@@ -67,6 +67,10 @@
             android:name=".ThermalCamActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".VaccinationActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
