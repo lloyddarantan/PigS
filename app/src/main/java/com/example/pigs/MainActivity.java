@@ -26,6 +26,12 @@ import com.google.android.material.card.MaterialCardView;
 import com.example.pigs.controller.LoginActivity;
 import com.example.pigs.controller.LoginActivity;
 
+
+import android.content.Intent;
+import com.example.pigs.network.SessionManager;
+import com.example.pigs.network.ProfileApi;
+import org.json.JSONObject;
+
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -58,6 +64,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Check if the user is logged in
+        if (!checkLoginSession()) {
+            return;
+        }
+
         setupNotificationsButton();
 
 
@@ -85,7 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Logout listener
         if (imgLogo != null) {
-            imgLogo.setOnClickListener(v -> showLogoutConfirmationDialog());
+            imgLogo.setOnClickListener(v -> {
+                Intent intent = new Intent(
+                        MainActivity.this,
+                        ProfileActivity.class
+                );
+                startActivity(intent);
+            });
         }
 
 // Open Vaccination Dashboard
@@ -248,4 +266,106 @@ public class MainActivity extends AppCompatActivity {
 
         datePickerDialog.show();
     }
+
+
+    private boolean checkLoginSession() {
+
+        if (SessionManager.token(this).isEmpty()) {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    LoginActivity.class
+            );
+
+            intent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK |
+                            Intent.FLAG_ACTIVITY_CLEAR_TASK
+            );
+
+            startActivity(intent);
+            finish();
+
+            return false;
+        }
+
+        return true;
+    }
+
+
+    private void refreshDashboardProfile() {
+
+        if (SessionManager.token(this).isEmpty()) {
+            return;
+        }
+
+        ProfileApi.post(
+                this,
+                "get_profile.php",
+                new JSONObject(),
+                new ProfileApi.Callback() {
+
+                    @Override
+                    public void success(JSONObject response) {
+
+                        JSONObject user =
+                                response.optJSONObject("user");
+
+                        if (user == null) {
+                            return;
+                        }
+
+                        String firstName =
+                                user.optString("first_name");
+
+                        String lastName =
+                                user.optString("last_name");
+
+                        String email =
+                                user.optString("email");
+
+                        // Update stored dashboard information
+                        getIntent().putExtra(
+                                "USER_FIRST_NAME",
+                                firstName
+                        );
+
+                        getIntent().putExtra(
+                                "USER_LAST_NAME",
+                                lastName
+                        );
+
+                        getIntent().putExtra(
+                                "USER_EMAIL",
+                                email
+                        );
+
+                        // Update welcome message
+                        TextView welcome =
+                                findViewById(R.id.tvWelcomeMessage);
+
+                        if (welcome != null) {
+                            welcome.setText(
+                                    "Welcome,\n" + email
+                            );
+                        }
+                    }
+
+                    @Override
+                    public void error(String message) {
+                        // Keep existing dashboard information
+                        // if the server is temporarily unavailable
+                    }
+                }
+        );
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (checkLoginSession()) {
+            refreshDashboardProfile();
+        }
+    }
 }
+
+

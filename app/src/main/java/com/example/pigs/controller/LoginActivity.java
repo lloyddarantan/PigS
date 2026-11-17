@@ -33,6 +33,8 @@ import android.view.animation.OvershootInterpolator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.pigs.network.SessionManager;
+
 
 
 import com.example.pigs.network.ApiClient;
@@ -185,21 +187,19 @@ public class LoginActivity extends AppCompatActivity {
                 passwordInput,
                 new ApiClient.ApiCallback() {
 
+
                     @Override
                     public void onSuccess(org.json.JSONObject response) {
 
-                        if (isFinishing() || isDestroyed()) return;
+                        if (isFinishing() || isDestroyed()) {
+                            return;
+                        }
 
+                        // Get user information from PHP
                         org.json.JSONObject user =
                                 response.optJSONObject("user");
-                                loggedInUserId = user.optInt("id");
 
-                                loggedInFirstName = user.optString("first_name");
-
-                                loggedInLastName = user.optString("last_name");
-
-                                loggedInRole = user.optString("role");
-
+                        // Check if user information exists
                         if (user == null) {
 
                             btnContinue.setEnabled(true);
@@ -214,6 +214,31 @@ public class LoginActivity extends AppCompatActivity {
                             return;
                         }
 
+                        // Get authentication token from PHP
+
+                        String token = response.optString("token", "");
+
+                        if (token.isEmpty()) {
+
+                            btnContinue.setEnabled(true);
+                            btnContinue.setText("CONTINUE");
+
+                            Toast.makeText(
+                                    LoginActivity.this,
+                                    "Login token missing. Check login.php.",
+                                    Toast.LENGTH_LONG
+                            ).show();
+
+                            return;
+                        }
+
+                        // Save login token
+                        SessionManager.save(
+                                LoginActivity.this,
+                                token
+                        );
+
+                        // Store user details for dashboard
                         loggedInUserId = user.optInt("id");
                         loggedInFirstName = user.optString("first_name");
                         loggedInLastName = user.optString("last_name");
@@ -221,34 +246,13 @@ public class LoginActivity extends AppCompatActivity {
 
                         String userEmail = user.optString("email");
 
+                        // Start existing PigSensor login animation
                         isAnimating = true;
-
                         btnContinue.setText("WELCOME!");
 
-                        // Save account details for MainActivity
-                        Intent intent = new Intent(
-                                LoginActivity.this,
-                                MainActivity.class
-                        );
-
-                        intent.putExtra("USER_ID", user.optInt("id"));
-                        intent.putExtra("USER_EMAIL", userEmail);
-                        intent.putExtra(
-                                "USER_FIRST_NAME",
-                                user.optString("first_name")
-                        );
-                        intent.putExtra(
-                                "USER_LAST_NAME",
-                                user.optString("last_name")
-                        );
-                        intent.putExtra(
-                                "USER_ROLE",
-                                user.optString("role")
-                        );
-
-                        // Keep your existing login animation
                         showLoginAnimation(userEmail);
                     }
+
 
                     @Override
                     public void onError(String message) {
