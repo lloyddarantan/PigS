@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF7FA"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#F5A4C0"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/profileBack"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:text="‹  Back to Dashboard"
+                android:textColor="#752746"
+                android:textSize="16sp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <ImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/ic_profile_person"
+                android:contentDescription="PigSensor Logo"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textColor="#752746"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="12dp"/>
+
+            <TextView
+                android:id="@+id/profileHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PigS User"
+                android:textColor="#752746"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Personal Information"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#752746"
+            android:layout_marginTop="28dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="First Name"
+            android:textColor="#752746"
+            android:layout_marginTop="16dp"/>
+
+        <EditText
+            android:id="@+id/profileFirst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F5A4C0"
+            android:hint="Enter first name"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Last Name"
+            android:textColor="#752746"
+            android:layout_marginTop="14dp"/>
+
+        <EditText
+            android:id="@+id/profileLast"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F5A4C0"
+            android:hint="Enter last name"
+            android:inputType="textPersonName"
+            android:maxLength="100"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:textColor="#752746"
+            android:layout_marginTop="14dp"/>
+
+        <EditText
+            android:id="@+id/profileEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#F5A4C0"
+            android:hint="Enter email address"
+            android:inputType="textEmailAddress"
+            android:maxLength="150"
+            android:minHeight="48dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/profileSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Save Profile"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            android:backgroundTint="#F5A4C0"
+            android:textColor="#752746"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Account Settings"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#752746"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Manage your PigSensor account"
+            android:textColor="#8A6877"
+            android:layout_marginTop="5dp"/>
+
+        <Button
+            android:id="@+id/profileLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Log Out"
+            android:textAllCaps="false"
+            android:backgroundTint="#8D5270"
+            android:textColor="#FFFFFF"/>
+
+        <Button
+            android:id="@+id/profileDelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Delete Account"
+            android:textAllCaps="false"
+            android:backgroundTint="#C83F55"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="20dp"
+            android:text="Deleting your account is permanent."
+            android:textColor="#C83F55"
+            android:textSize="12sp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</ScrollView>
