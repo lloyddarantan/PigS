@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="pt_pink">#F08CA0</color>
+    <color name="pt_pink_dark">#E8607A</color>
+    <color name="pt_pink_light">#F7B9C4</color>
+    <color name="pt_text">#1B1B1B</color>
+    <color name="pt_gray">#6E6E6E</color>
+    <color name="pt_navy">#25365A</color>
+</resources>
