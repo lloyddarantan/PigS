@@ -30,7 +30,6 @@ import android.widget.Toast;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
-import android.content.SharedPreferences;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -69,7 +68,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         ApiClient.initialize(getApplicationContext());
+
         initializeViews();
         initializeSound();
 
@@ -196,19 +197,11 @@ public class LoginActivity extends AppCompatActivity {
                             return;
                         }
 
-<<<<<<< Updated upstream
                         // Get user information from PHP
                         org.json.JSONObject user =
                                 response.optJSONObject("user");
 
                         // Check if user information exists
-=======
-                        // 1. Get the user object first
-                        org.json.JSONObject user =
-                                response.optJSONObject("user");
-
-                        // 2. Check if the user exists BEFORE accessing its fields
->>>>>>> Stashed changes
                         if (user == null) {
 
                             btnContinue.setEnabled(true);
@@ -223,37 +216,24 @@ public class LoginActivity extends AppCompatActivity {
                             return;
                         }
 
-<<<<<<< Updated upstream
                         // Get authentication token from PHP
 
                         String token = response.optString("token", "");
 
                         if (token.isEmpty()) {
-=======
-                        // 3. Get the API token returned by PHP
-                        String apiToken = response.optString("token", "");
-
-                        if (apiToken.isEmpty()) {
->>>>>>> Stashed changes
 
                             btnContinue.setEnabled(true);
                             btnContinue.setText("CONTINUE");
 
                             Toast.makeText(
                                     LoginActivity.this,
-<<<<<<< Updated upstream
                                     "Login token missing. Check login.php.",
                                     Toast.LENGTH_LONG
-=======
-                                    "Login token was not received",
-                                    Toast.LENGTH_SHORT
->>>>>>> Stashed changes
                             ).show();
 
                             return;
                         }
 
-<<<<<<< Updated upstream
                         // Save login token
                         SessionManager.save(
                                 LoginActivity.this,
@@ -261,24 +241,6 @@ public class LoginActivity extends AppCompatActivity {
                         );
 
                         // Store user details for dashboard
-=======
-                        // 4. Save the token and account information
-                        SharedPreferences preferences = getSharedPreferences(
-                                "PigSensorSession",
-                                MODE_PRIVATE
-                        );
-
-                        preferences.edit()
-                                .putString("API_TOKEN", apiToken)
-                                .putInt("USER_ID", user.optInt("id"))
-                                .putString("USER_EMAIL", user.optString("email"))
-                                .putString("USER_FIRST_NAME", user.optString("first_name"))
-                                .putString("USER_LAST_NAME", user.optString("last_name"))
-                                .putString("USER_ROLE", user.optString("role"))
-                                .apply();
-
-                        // 5. Set the logged-in user information
->>>>>>> Stashed changes
                         loggedInUserId = user.optInt("id");
                         loggedInFirstName = user.optString("first_name");
                         loggedInLastName = user.optString("last_name");
@@ -286,11 +248,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         String userEmail = user.optString("email");
 
-<<<<<<< Updated upstream
                         // Start existing PigSensor login animation
-=======
-                        // 6. Continue with your existing animation
->>>>>>> Stashed changes
                         isAnimating = true;
                         btnContinue.setText("WELCOME!");
 
