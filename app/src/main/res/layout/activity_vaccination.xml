@@ -42,11 +42,11 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="🐷"
-                    android:textSize="35sp"/>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="🐷"-->
+<!--                    android:textSize="35sp"/>-->
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -109,6 +109,7 @@
 
             <!-- Herd Immunity Card -->
 
+            <!-- Herd Immunity Card -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
@@ -132,11 +133,12 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/tvImmunityStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="✔ OK"
-                        android:textColor="#009B35"
-                        android:textSize="17sp"
+                        android:text="Calculating..."
+                        android:textColor="#777777"
+                        android:textSize="14sp"
                         android:textStyle="bold"/>
 
                 </LinearLayout>
@@ -149,6 +151,7 @@
                     android:orientation="horizontal">
 
                     <com.example.pigs.view.ImmunityPieView
+                        android:id="@+id/immunityPieView"
                         android:layout_width="115dp"
                         android:layout_height="115dp"/>
 
@@ -160,26 +163,49 @@
                         android:paddingStart="12dp">
 
                         <TextView
+                            android:id="@+id/tvImmunityPercentage"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="96% Protected"
+                            android:text="--%"
                             android:textColor="#000000"
                             android:textSize="27sp"
                             android:textStyle="bold"/>
 
                         <TextView
+                            android:id="@+id/tvImmunityCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="240 / 255 pigs Up to Date"
-                            android:textColor="#000000"
+                            android:text="Loading pig records..."
+                            android:textColor="#444444"
                             android:textSize="13sp"
                             android:textStyle="bold"/>
 
                     </LinearLayout>
-
                 </LinearLayout>
-
             </LinearLayout>
+            <Button
+                android:id="@+id/btnAddPig"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/bg_button"
+                android:text="+ ADD PIG"
+                android:textColor="#FFFFFF"
+                android:textSize="15sp"
+                android:textAllCaps="false" />
+
+
+            <Button
+                android:id="@+id/btnScheduleVaccination"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_button"
+                android:text="Schedule Vaccination"
+                android:textColor="#FFFFFF"
+                android:textAllCaps="false"
+                android:textStyle="bold" />
+
 
             <!-- Upcoming Schedule Title -->
 
@@ -214,29 +240,65 @@
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
-            <com.example.pigs.view.VaccinationChartView
-                android:id="@+id/vaccinationChart"
+            <!-- Recent Administered Log Table -->
+
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:scrollbars="horizontal">
+
+                <TableLayout
+                    android:id="@+id/tableVaccinationLogs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="*"
+                    android:background="#FFFFFF">
+
+                    <!-- Table Header -->
+
+                    <TableRow
+                        android:background="#FFE5E5"
+                        android:padding="10dp">
+
+                        <TextView
+                            android:text="Date"
+                            android:textStyle="bold"
+                            android:textColor="#222222"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:text="Tag"
+                            android:textStyle="bold"
+                            android:textColor="#222222"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:text="Vaccine Name"
+                            android:textStyle="bold"
+                            android:textColor="#222222"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:text="Dose"
+                            android:textStyle="bold"
+                            android:textColor="#222222"
+                            android:padding="8dp"/>
+
+                        <TextView
+                            android:text="Staff ID"
+                            android:textStyle="bold"
+                            android:textColor="#222222"
+                            android:padding="8dp"/>
+
+                    </TableRow>
+
+                </TableLayout>
+
+            </HorizontalScrollView>
 
         </LinearLayout>
 
     </ScrollView>
-
-    <!-- Continue Button -->
-
-    <Button
-        android:id="@+id/btnContinue"
-        android:layout_width="220dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/bg_button"
-        android:text="CONTINUE"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        android:textAllCaps="false"/>
 
 </LinearLayout>

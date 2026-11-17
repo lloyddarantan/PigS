@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_dialog">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter the pig's information to add it to your herd."
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pig Tag Number"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#373737"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etDialogTagNumber"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Enter pig tag number"
+        android:singleLine="true"
+        android:padding="12dp"
+        android:textSize="15sp"
+        android:background="@drawable/bg_dialog_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pen Number"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:textColor="#373737"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etDialogPenNumber"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Enter pen number"
+        android:singleLine="true"
+        android:padding="12dp"
+        android:textSize="15sp"
+        android:background="@drawable/bg_dialog_input"/>
+
+</LinearLayout>

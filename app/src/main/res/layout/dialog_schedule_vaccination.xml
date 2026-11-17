@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@drawable/bg_dialog">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose a pig, select its vaccine, and provide the schedule details."
+        android:textSize="14sp"
+        android:textColor="#888888"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Pig"
+        android:textStyle="bold"
+        android:textColor="#373737"
+        android:textSize="14sp"/>
+
+    <Spinner
+        android:id="@+id/spinnerDialogPig"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_dialog_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Vaccine"
+        android:textStyle="bold"
+        android:textColor="#373737"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerDialogVaccine"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:background="@drawable/bg_dialog_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dose Number"
+        android:textStyle="bold"
+        android:textColor="#373737"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/etDialogDoseNumber"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Enter dose number"
+        android:inputType="number"
+        android:singleLine="true"
+        android:padding="12dp"
+        android:background="@drawable/bg_dialog_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dose Amount"
+        android:textStyle="bold"
+        android:textColor="#373737"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"/>
+
+    <EditText
+        android:id="@+id/etDialogDose"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:hint="Enter dose amount (e.g. 1.00)"
+        android:inputType="numberDecimal"
+        android:singleLine="true"
+        android:padding="12dp"
+        android:background="@drawable/bg_dialog_input"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scheduled Date"
+        android:textStyle="bold"
+        android:textColor="#373737"
+        android:textSize="14sp"
+        android:layout_marginTop="12dp"/>
+
+    <TextView
+        android:id="@+id/tvDialogScheduledDate"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Select scheduled date"
+        android:textSize="15sp"
+        android:textColor="#373737"
+        android:gravity="center_vertical"
+        android:padding="12dp"
+        android:background="@drawable/bg_dialog_input"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</LinearLayout>

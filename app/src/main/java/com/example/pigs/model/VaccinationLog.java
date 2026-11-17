@@ -1,5 +1,5 @@
 package com.example.pigs.model;
-
+import com.example.pigs.model.VaccinationLog;
 public class VaccinationLog {
     private String date;
     private String tagNumber;
