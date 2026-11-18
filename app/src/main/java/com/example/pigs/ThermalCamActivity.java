@@ -19,7 +19,13 @@ import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pigs.adapter.ThermalPigAdapter;
+import com.example.pigs.model.Pig;
+import com.example.pigs.viewmodel.DashboardViewModel;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -42,6 +48,10 @@ public class ThermalCamActivity extends AppCompatActivity {
     private MaterialButton btnDetectPig;
     private RoboflowApiClient roboflowApiClient;
 
+    private RecyclerView recyclerViewPigs;
+    private ThermalPigAdapter pigAdapter;
+    private DashboardViewModel viewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +63,31 @@ public class ThermalCamActivity extends AppCompatActivity {
         previewViewThermalFeed = findViewById(R.id.imgThermalFeed);
         detectionOverlayView = findViewById(R.id.detectionOverlayView);
         btnDetectPig = findViewById(R.id.btnDetectPig);
+
+        recyclerViewPigs = findViewById(R.id.recyclerViewPigs);
+        if (recyclerViewPigs != null) {
+            recyclerViewPigs.setLayoutManager(new LinearLayoutManager(this));
+            pigAdapter = new ThermalPigAdapter();
+            recyclerViewPigs.setAdapter(pigAdapter);
+        }
+
+        viewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
+        viewModel.getPigs().observe(this, pigs -> {
+            if (pigAdapter != null) {
+                if (pigs == null || pigs.isEmpty()) {
+                    List<Pig> defaultPigs = new ArrayList<>();
+                    defaultPigs.add(new Pig(3, "003", "1", "40.9°C", "Possible ASF symptom - flag for vet", "A-0034", "♀", "14"));
+                    defaultPigs.add(new Pig(11, "011", "2", "39.5°C", "Monitor closely • elevated", "A-0112", "♂", "9"));
+                    defaultPigs.add(new Pig(1, "001", "1", "38.4°C", "Normal range • Healthy", "A-0011", "♀", "22"));
+                    defaultPigs.add(new Pig(2, "002", "1", "38.7°C", "Normal range • Healthy", "A-0022", "♀", "18"));
+                    defaultPigs.add(new Pig(4, "004", "1", "38.3°C", "Normal range • Healthy", "A-5432", "♂", "11"));
+                    defaultPigs.add(new Pig(8, "008", "1", "38.5°C", "Normal range • Healthy", "A-0088", "♀", "16"));
+                    pigAdapter.setPigs(defaultPigs);
+                } else {
+                    pigAdapter.setPigs(pigs);
+                }
+            }
+        });
 
         // Back button navigation
         if (btnBack != null) {
@@ -321,5 +356,11 @@ public class ThermalCamActivity extends AppCompatActivity {
                 Toast.makeText(this, "Camera permission is required to view live feed", Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
     }
 }
