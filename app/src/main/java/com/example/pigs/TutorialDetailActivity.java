@@ -100,7 +100,7 @@ public class TutorialDetailActivity extends AppCompatActivity {
                 return true;
 
             } else if (id == R.id.support_id) {
-                startActivity(new Intent(this, SupportActivity.class));
+                startActivity(new Intent(this, TechnicalSupportActivity.class));
                 finish();
                 return true;
             }

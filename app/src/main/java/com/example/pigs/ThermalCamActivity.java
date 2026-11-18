@@ -119,7 +119,7 @@ public class ThermalCamActivity extends AppCompatActivity {
                     finish();
                     return true;
                 } else if (id == R.id.support_id) {
-                    Intent intent = new Intent(ThermalCamActivity.this, SupportActivity.class);
+                    Intent intent = new Intent(ThermalCamActivity.this, TechnicalSupportActivity.class);
                     startActivity(intent);
                     finish();
                     return true;

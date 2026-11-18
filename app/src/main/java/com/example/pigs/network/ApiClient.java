@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -20,8 +21,25 @@ import java.util.concurrent.Executors;
 
 public class ApiClient {
 
+    // ==========================================
+    // API CONFIGURATION
+    // MERGED FROM ApiConfig.java
+    // ==========================================
+
     private static final String BASE_URL =
             "http://10.0.2.2/pigsensor_api/";
+
+    private static final String PREFS_NAME = "PigTechPrefs";
+    private static final String KEY_TOKEN = "token";
+
+    private static final String DEBUG_TOKEN = "a1b2c3d4e5f60718293a4b5c6d7e8f90a1b2c3d4e5f60718293a4b5c6d7e8f90";
+
+
+    private static Context appContext;
+
+    // ==========================================
+    // EXECUTOR AND MAIN HANDLER
+    // ==========================================
 
     private static final ExecutorService executor =
             Executors.newSingleThreadExecutor();
@@ -29,68 +47,141 @@ public class ApiClient {
     private static final Handler mainHandler =
             new Handler(Looper.getMainLooper());
 
-    private static final String PREF_NAME = "PigSensorSession";
-    private static final String TOKEN_KEY = "API_TOKEN";
-
-    private static Context appContext;
+    // ==========================================
+    // API CALLBACK
+    // ==========================================
 
     public interface ApiCallback {
         void onSuccess(JSONObject response);
+
         void onError(String message);
     }
 
-    // Initialize ApiClient with application context.
+    // ==========================================
+    // INITIALIZE API CLIENT
+    // ==========================================
+
     public static void initialize(Context context) {
-        appContext = context.getApplicationContext();
+        if (context != null) {
+            appContext = context.getApplicationContext();
+        }
     }
 
-    // Save the authentication token.
+    // ==========================================
+    // BASE URL ACCESS
+    // Used by TicketApi
+    // ==========================================
+
+    public static String getBaseUrl() {
+        return BASE_URL;
+    }
+
+    // ==========================================
+    // TOKEN MANAGEMENT
+    // ==========================================
+
+    // Save authentication token
     public static void saveToken(String token) {
 
-        if (appContext == null) return;
+        if (appContext == null || token == null || token.trim().isEmpty()) {
+            Log.e("ApiClient", "Cannot save token. Context or token is missing.");
+            return;
+        }
 
         SharedPreferences preferences =
                 appContext.getSharedPreferences(
-                        PREF_NAME,
+                        PREFS_NAME,
                         Context.MODE_PRIVATE
                 );
 
         preferences.edit()
-                .putString(TOKEN_KEY, token)
+                .putString(KEY_TOKEN, token)
+                .apply();
+
+        Log.d("ApiClient", "Authentication token saved.");
+    }
+
+    // Save token using an explicit Context if needed
+    public static void saveToken(Context context, String token) {
+
+        if (context == null || token == null || token.trim().isEmpty()) {
+            return;
+        }
+
+        Context app = context.getApplicationContext();
+
+        app.getSharedPreferences(
+                        PREFS_NAME,
+                        Context.MODE_PRIVATE
+                ).edit()
+                .putString(KEY_TOKEN, token)
                 .apply();
     }
 
-    // Retrieve the saved authentication token.
-    private static String getToken() {
+    // Retrieve token using Context
+    // Compatible with ApiClient.getToken(this)
+    public static String getToken(Context context) {
 
-        if (appContext == null) return "";
+        if (context == null) {
+            return "";
+        }
 
         SharedPreferences preferences =
-                appContext.getSharedPreferences(
-                        PREF_NAME,
+                context.getApplicationContext().getSharedPreferences(
+                        PREFS_NAME,
                         Context.MODE_PRIVATE
                 );
 
-        return preferences.getString(TOKEN_KEY, "");
+        return preferences.getString(KEY_TOKEN, "");
     }
 
-    // Clear the saved token during logout.
+    // Retrieve token using initialized application context
+    private static String getToken() {
+        return getToken(appContext);
+    }
+
+    // Check whether a user has a saved token
+    public static boolean isLoggedIn(Context context) {
+        String token = getToken(context);
+        return !token.isEmpty();
+    }
+
+    // Clear token during logout
     public static void clearToken() {
 
-        if (appContext == null) return;
+        if (appContext == null) {
+            return;
+        }
 
-        SharedPreferences preferences =
-                appContext.getSharedPreferences(
-                        PREF_NAME,
+        appContext.getSharedPreferences(
+                        PREFS_NAME,
                         Context.MODE_PRIVATE
-                );
+                ).edit()
+                .remove(KEY_TOKEN)
+                .apply();
 
-        preferences.edit()
-                .remove(TOKEN_KEY)
+        Log.d("ApiClient", "Authentication token cleared.");
+    }
+
+    // Clear token using an explicit Context
+    public static void clearToken(Context context) {
+
+        if (context == null) {
+            return;
+        }
+
+        context.getApplicationContext().getSharedPreferences(
+                        PREFS_NAME,
+                        Context.MODE_PRIVATE
+                ).edit()
+                .remove(KEY_TOKEN)
                 .apply();
     }
 
+    // ==========================================
     // REGISTER
+    // ==========================================
+
     public static void register(
             String firstName,
             String lastName,
@@ -110,14 +201,18 @@ public class ApiClient {
             data.put("password", password);
 
         } catch (Exception e) {
-            callback.onError("Unable to prepare registration data.");
+            postError(callback,
+                    "Unable to prepare registration data.");
             return;
         }
 
         request("register.php", data, false, callback);
     }
 
+    // ==========================================
     // LOGIN
+    // ==========================================
+
     public static void login(
             String email,
             String password,
@@ -131,37 +226,64 @@ public class ApiClient {
             data.put("password", password);
 
         } catch (Exception e) {
-            callback.onError("Unable to prepare login data.");
+            postError(callback,
+                    "Unable to prepare login data.");
             return;
         }
 
         request("login.php", data, false, callback);
     }
 
+    // ==========================================
     // AUTHENTICATED POST REQUEST
+    // ==========================================
+
     public static void post(
             String endpoint,
             JSONObject data,
             ApiCallback callback
     ) {
+
         request(endpoint, data, true, callback);
     }
 
+    // ==========================================
     // GET REQUEST
+    // ==========================================
+
     public static void get(
             String endpoint,
             ApiCallback callback
     ) {
+
         requestGet(endpoint, callback);
     }
 
+    // ==========================================
     // POST REQUEST HANDLER
+    // ==========================================
+
     private static void request(
             String endpoint,
             JSONObject data,
             boolean requiresAuth,
             ApiCallback callback
     ) {
+
+        if (appContext == null) {
+            postError(callback, "ApiClient is not initialized.");
+            return;
+        }
+
+        if (data == null) {
+            postError(callback, "Request data is empty.");
+            return;
+        }
+
+        if (endpoint == null || endpoint.trim().isEmpty()) {
+            postError(callback, "API endpoint is missing.");
+            return;
+        }
 
         executor.execute(() -> {
 
@@ -184,17 +306,18 @@ public class ApiClient {
                 );
 
                 connection.setRequestProperty(
-                        "Authorization",
-                        "Bearer " + getToken()
+                        "Accept",
+                        "application/json"
                 );
 
+                // Add authentication only when required
                 if (requiresAuth) {
 
                     String token = getToken();
 
                     if (token.isEmpty()) {
                         throw new Exception(
-                                "You are not logged in. Please log in again."
+                                "You're not logged in. Please log in again."
                         );
                     }
 
@@ -204,10 +327,12 @@ public class ApiClient {
                     );
                 }
 
+                // Convert JSON to bytes
                 byte[] requestData =
                         data.toString().getBytes(StandardCharsets.UTF_8);
 
                 try (OutputStream output = connection.getOutputStream()) {
+
                     output.write(requestData);
                     output.flush();
                 }
@@ -215,6 +340,8 @@ public class ApiClient {
                 handleResponse(connection, callback);
 
             } catch (Exception e) {
+
+                Log.e("API_ERROR", "POST request failed", e);
 
                 postError(callback, e.getMessage());
 
@@ -227,11 +354,24 @@ public class ApiClient {
         });
     }
 
+    // ==========================================
     // GET REQUEST HANDLER
+    // ==========================================
+
     private static void requestGet(
             String endpoint,
             ApiCallback callback
     ) {
+
+        if (appContext == null) {
+            postError(callback, "ApiClient is not initialized.");
+            return;
+        }
+
+        if (endpoint == null || endpoint.trim().isEmpty()) {
+            postError(callback, "API endpoint is missing.");
+            return;
+        }
 
         executor.execute(() -> {
 
@@ -243,7 +383,7 @@ public class ApiClient {
 
                 if (token.isEmpty()) {
                     throw new Exception(
-                            "You are not logged in. Please log in again."
+                            "You're not logged in. Please log in again."
                     );
                 }
 
@@ -269,6 +409,8 @@ public class ApiClient {
 
             } catch (Exception e) {
 
+                Log.e("API_ERROR", "GET request failed", e);
+
                 postError(callback, e.getMessage());
 
             } finally {
@@ -280,7 +422,10 @@ public class ApiClient {
         });
     }
 
+    // ==========================================
     // HANDLE SERVER RESPONSE
+    // ==========================================
+
     private static void handleResponse(
             HttpURLConnection connection,
             ApiCallback callback
@@ -294,16 +439,21 @@ public class ApiClient {
                         : connection.getErrorStream();
 
         if (inputStream == null) {
-            throw new Exception("No response from server. HTTP " + responseCode);
+
+            throw new Exception(
+                    "No response from server. HTTP " + responseCode
+            );
         }
 
         StringBuilder response = new StringBuilder();
 
-        try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(
-                        inputStream,
-                        StandardCharsets.UTF_8
-                ))) {
+        try (BufferedReader reader =
+                     new BufferedReader(
+                             new InputStreamReader(
+                                     inputStream,
+                                     StandardCharsets.UTF_8
+                             )
+                     )) {
 
             String line;
 
@@ -314,37 +464,42 @@ public class ApiClient {
 
         String responseText = response.toString().trim();
 
-        android.util.Log.d(
+        Log.d(
                 "API_RESPONSE",
                 "URL: " + connection.getURL()
                         + " | HTTP: " + responseCode
-                        + " | Body: " + responseText
         );
 
         JSONObject jsonResponse;
 
         try {
+
             jsonResponse = new JSONObject(responseText);
 
-        } catch (org.json.JSONException e) {
+        } catch (Exception e) {
 
             String preview = responseText.length() > 500
                     ? responseText.substring(0, 500)
                     : responseText;
 
             throw new Exception(
-                    "Server returned HTML or invalid JSON. HTTP "
-                            + responseCode + ". Response: " + preview
+                    "Server returned invalid JSON. HTTP "
+                            + responseCode
+                            + ". Response: "
+                            + preview
             );
         }
 
+        // Check success response
         if (responseCode >= 200
                 && responseCode < 300
                 && jsonResponse.optBoolean("success", false)) {
 
-            mainHandler.post(() ->
-                    callback.onSuccess(jsonResponse)
-            );
+            if (callback != null) {
+                mainHandler.post(() ->
+                        callback.onSuccess(jsonResponse)
+                );
+            }
 
         } else {
 
@@ -357,14 +512,22 @@ public class ApiClient {
         }
     }
 
+    // ==========================================
+    // ERROR HANDLER
+    // ==========================================
+
     private static void postError(
             ApiCallback callback,
             String message
     ) {
 
+        if (callback == null) {
+            return;
+        }
+
         mainHandler.post(() ->
                 callback.onError(
-                        message == null
+                        message == null || message.isEmpty()
                                 ? "Unable to connect to the server."
                                 : message
                 )

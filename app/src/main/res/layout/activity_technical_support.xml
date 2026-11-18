@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Search -->
+        <LinearLayout
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_search"
+            android:elevation="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="14dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="14dp"
+            android:paddingBottom="8dp">
+
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/ic_search"
+                android:tint="@color/pt_pink" />
+
+            <EditText
+                android:id="@+id/etSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="Search Pig #"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/pt_text"
+                android:textColorHint="@color/pt_pink"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/ivScan"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@drawable/ic_scan"
+                android:tint="@color/pt_pink" />
+        </LinearLayout>
+
+        <!-- Tabs -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/tab0"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab"
+                android:padding="7dp"
+                android:src="@drawable/ic_pig" />
+
+            <ImageView
+                android:id="@+id/tab1"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab"
+                android:padding="7dp"
+                android:src="@drawable/ic_thermometer" />
+
+            <ImageView
+                android:id="@+id/tab2"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab"
+                android:padding="7dp"
+                android:src="@drawable/ic_cap" />
+
+            <ImageView
+                android:id="@+id/tab3"
+                android:layout_width="0dp"
+                android:layout_height="34dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_tab"
+                android:padding="7dp"
+                android:src="@drawable/ic_wrench" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Technical Support"
+            android:textColor="@color/pt_text"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call, submit tickets, or track maintenance issues"
+            android:textColor="@color/pt_text"
+            android:textSize="12sp" />
+
+        <!-- Emergency -->
+        <LinearLayout
+            android:id="@+id/cardEmergency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_emergency"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="14dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Emergency Maintenance"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Critical system failures - Call now"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnEmergency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_pill_white"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="8dp">
+
+                <ImageView
+                    android:id="@+id/ivEmergencyPhone"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:src="@drawable/ic_phone_dark" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Call"
+                    android:textColor="@color/pt_pink_dark"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Support lines -->
+        <TextView
+            style="@style/PtSectionLabel"
+            android:text="Support Lines" />
+
+        <LinearLayout
+            android:id="@+id/rowFarm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_row"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <FrameLayout
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="@drawable/bg_circle_gray">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_wrench_dark" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Farm Systems Support"
+                    android:textColor="@color/pt_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawablePadding="4dp"
+                    android:text="24/7"
+                    android:textColor="@color/pt_gray"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnCallFarm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_call_pill"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="18dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="7dp"
+                android:text="Call"
+                android:textColor="@color/pt_pink_dark"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rowHardware"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_row"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <FrameLayout
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:background="@drawable/bg_circle_gray">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_laptop" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hardware Helpdesk"
+                    android:textColor="@color/pt_text"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawablePadding="4dp"
+                    android:text="Mon-Sat 8AM-6PM"
+                    android:textColor="@color/pt_gray"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnCallHardware"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_call_pill"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="18dp"
+                android:paddingTop="7dp"
+                android:paddingEnd="18dp"
+                android:paddingBottom="7dp"
+                android:text="Call"
+                android:textColor="@color/pt_pink_dark"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- Submit a ticket -->
+        <TextView
+            style="@style/PtSectionLabel"
+            android:text="Submit A Ticket" />
+
+        <LinearLayout
+            android:id="@+id/cardSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_section"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                style="@style/PtFieldLabel"
+                android:text="ISSUE TYPE" />
+
+            <EditText
+                android:id="@+id/etIssue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_input"
+                android:hint="e.g RFID sensor malfunction"
+                android:inputType="textCapSentences"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="@color/pt_text"
+                android:textColorHint="#8A8A8A"
+                android:textSize="13sp" />
+
+            <TextView
+                style="@style/PtFieldLabel"
+                android:layout_marginTop="10dp"
+                android:text="DESCRIPTION" />
+
+            <EditText
+                android:id="@+id/etDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_input"
+                android:gravity="top|start"
+                android:hint="Describe what's happening..."
+                android:inputType="textMultiLine|textCapSentences"
+                android:minLines="3"
+                android:padding="10dp"
+                android:textColor="@color/pt_text"
+                android:textColorHint="#8A8A8A"
+                android:textSize="13sp" />
+
+            <TextView
+                android:id="@+id/btnSubmit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="4dp"
+                android:background="@drawable/bg_submit"
+                android:clickable="true"
+                android:drawableEnd="@drawable/ic_arrow_right"
+                android:drawablePadding="8dp"
+                android:drawableTint="@color/white"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:gravity="center"
+                android:paddingStart="30dp"
+                android:paddingTop="12dp"
+                android:paddingEnd="30dp"
+                android:paddingBottom="12dp"
+                android:text="Submit A Ticket"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!-- My tickets -->
+        <TextView
+            style="@style/PtSectionLabel"
+            android:text="MY TICKETS" />
+
+        <LinearLayout
+            android:id="@+id/ticketContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:orientation="vertical" />
+    </LinearLayout>
+</ScrollView>

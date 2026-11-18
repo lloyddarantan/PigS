@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <LinearLayout
+            android:id="@+id/headerRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/bg_logo">
+
+                <ImageView
+                    android:id="@+id/ivLogo"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_wrench" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PigTech"
+                    android:textColor="#1B1B1B"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Support Page"
+                    android:textColor="#6E6E6E"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Help Label -->
+        <TextView
+            android:id="@+id/tvHelpLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:letterSpacing="0.05"
+            android:text="HOW CAN WE HELP ?"
+            android:textColor="#F08CA0"
+            android:textSize="10sp"
+            android:textStyle="bold" />
+
+        <!-- Title and Pig Illustration -->
+        <FrameLayout
+            android:id="@+id/titleRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp">
+
+            <ImageView
+                android:id="@+id/ivPig"
+                android:layout_width="155dp"
+                android:layout_height="112dp"
+                android:layout_gravity="end|top"
+                android:layout_marginTop="6dp"
+                android:src="@drawable/ic_pig" />
+
+            <LinearLayout
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="177dp"
+                    android:layout_height="100dp"
+                    android:lineSpacingMultiplier="0.95"
+                    android:text="What kind of support do you need?"
+                    android:textColor="#0A0A0A"
+                    android:textSize="27sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Choose the type of assistance you need"
+                    android:textColor="#555555"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Technical Support Card -->
+        <FrameLayout
+            android:id="@+id/cardTech"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/bg_card_tech"
+            android:clickable="true"
+            android:elevation="8dp"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/ivGear"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:alpha="0.7"
+                android:src="@drawable/ic_gear"
+                android:tint="#8A6A92" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <FrameLayout
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:background="@drawable/bg_icon_box">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_tools" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Technical Support"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="System errors, sensors &amp; maintenance"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/chipsTech"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/PtChipStrong"
+                        android:text="RFID" />
+
+                    <TextView
+                        style="@style/PtChipStrong"
+                        android:text="Sensors" />
+
+                    <TextView
+                        style="@style/PtChipPlain"
+                        android:text="Camera" />
+
+                    <TextView
+                        style="@style/PtChipPlain"
+                        android:text="Feeder" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_arrow_btn">
+
+                <ImageView
+                    android:id="@+id/ivArrowTech"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="#6F5A63" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <!-- Veterinarian Card -->
+        <FrameLayout
+            android:id="@+id/cardVet"
+            android:layout_width="match_parent"
+            android:layout_height="185dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/bg_card_vet"
+            android:clickable="true"
+            android:elevation="8dp"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/ivVetPig"
+                android:layout_width="86dp"
+                android:layout_height="77dp"
+                android:layout_gravity="end|bottom"
+                android:layout_marginEnd="4dp"
+                android:layout_marginBottom="6dp"
+                android:src="@drawable/ic_pig_syringe" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="18dp">
+
+                <FrameLayout
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
+                    android:background="@drawable/bg_icon_box">
+
+                    <ImageView
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_stethoscope" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:text="Veterinarian"
+                    android:textColor="#FFFFFF"
+                    android:textSize="21sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Animal health, vaccines &amp; checkups"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:id="@+id/chipsVet"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/PtChipPlain"
+                        android:layout_marginEnd="14dp"
+                        android:text="Health" />
+
+                    <TextView
+                        style="@style/PtChipPlain"
+                        android:layout_marginEnd="14dp"
+                        android:text="Vaccines" />
+
+                    <TextView
+                        style="@style/PtChipPlain"
+                        android:layout_marginEnd="14dp"
+                        android:text="Checkups" />
+
+                    <TextView
+                        style="@style/PtChipPlain"
+                        android:text="Emergency" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="top|end"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_arrow_btn">
+
+                <ImageView
+                    android:id="@+id/ivArrowVet"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_arrow_right"
+                    android:tint="#6F5A63" />
+            </FrameLayout>
+        </FrameLayout>
+
+        <!-- Back to Dashboard -->
+        <TextView
+            android:id="@+id/tvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="14dp"
+            android:clickable="true"
+            android:drawableStart="@drawable/ic_arrow_back"
+            android:drawablePadding="8dp"
+            android:drawableTint="#7A6A70"
+            android:focusable="true"
+            android:padding="8dp"
+            android:text="Back to Dashboard"
+            android:textColor="#7A6A70"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>

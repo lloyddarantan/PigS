@@ -33,7 +33,11 @@
             android:exported="false" />
 
         <activity
-            android:name=".SupportActivity"
+            android:name=".MainSupportActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".TechnicalSupportActivity"
             android:exported="false" />
 
         <activity

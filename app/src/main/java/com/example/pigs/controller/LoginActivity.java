@@ -233,8 +233,10 @@ public class LoginActivity extends AppCompatActivity {
 
                             return;
                         }
+// Save token for ApiClient and TicketApi
+                        ApiClient.saveToken(token);
 
-                        // Save login token
+// Keep SessionManager for existing app functionality
                         SessionManager.save(
                                 LoginActivity.this,
                                 token
