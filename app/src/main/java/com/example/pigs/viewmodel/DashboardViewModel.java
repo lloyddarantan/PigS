@@ -98,10 +98,21 @@ public class DashboardViewModel extends ViewModel {
                         JSONObject item = array.optJSONObject(i);
 
                         if (item != null) {
+                            String temp = item.optString("temperature", item.optString("temp", ""));
+                            String status = item.optString("status", item.optString("health_status", ""));
+                            String rfid = item.optString("rfid", item.optString("rfid_tag", item.optString("rfid_details", "")));
+                            String gender = item.optString("gender", item.optString("sex", ""));
+                            String age = item.optString("age", "");
+
                             result.add(new Pig(
                                     item.optInt("pig_id"),
                                     item.optString("tag_number"),
-                                    item.optString("pen_number")
+                                    item.optString("pen_number"),
+                                    temp,
+                                    status,
+                                    rfid,
+                                    gender,
+                                    age
                             ));
                         }
                     }

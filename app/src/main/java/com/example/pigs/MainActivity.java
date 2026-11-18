@@ -85,10 +85,7 @@ public class MainActivity extends AppCompatActivity {
 
         populateTemperatureTable();
 
-        String userEmail = getIntent().getStringExtra("USER_EMAIL");
-        if (userEmail != null && tvWelcomeMessage != null) {
-            tvWelcomeMessage.setText("Welcome, \n" + userEmail);
-        }
+        updateWelcomeMessage();
 
         // Open Heat Index Calendar Dialog
         if (cardHeatIndex != null) {
@@ -131,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
             imgThermalCam.setOnClickListener(v -> {
                 Intent intent = new Intent(MainActivity.this, ThermalCamActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             });
         }
 //still no functionality for bottom navigation
@@ -145,15 +143,18 @@ public class MainActivity extends AppCompatActivity {
             } else if (id == R.id.temp_id) {
                 Intent intent = new Intent(MainActivity.this, TempReadingActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
             } else if (id == R.id.tutorial_id) {
                 Intent intent = new Intent(MainActivity.this, TutorialActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
             } else if (id == R.id.support_id) {
                 // Launches SupportActivity containing the RatingBar
                 Intent intent = new Intent(MainActivity.this, SupportActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                 return true;
             }
 
@@ -181,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 );
 
                 startActivity(intent);
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             });
         }
     }
@@ -340,14 +342,7 @@ public class MainActivity extends AppCompatActivity {
                         );
 
                         // Update welcome message
-                        TextView welcome =
-                                findViewById(R.id.tvWelcomeMessage);
-
-                        if (welcome != null) {
-                            welcome.setText(
-                                    "Welcome,\n" + email
-                            );
-                        }
+                        updateWelcomeMessage();
                     }
 
                     @Override
@@ -358,6 +353,39 @@ public class MainActivity extends AppCompatActivity {
                 }
         );
     }
+
+    private void updateWelcomeMessage() {
+        if (tvWelcomeMessage == null) {
+            tvWelcomeMessage = findViewById(R.id.tvWelcomeMessage);
+        }
+        if (tvWelcomeMessage == null) return;
+
+        String firstName = getIntent().getStringExtra("USER_FIRST_NAME");
+        String lastName = getIntent().getStringExtra("USER_LAST_NAME");
+        String userEmail = getIntent().getStringExtra("USER_EMAIL");
+
+        String displayName;
+        boolean hasFirstName = firstName != null && !firstName.isEmpty() && !"null".equals(firstName);
+        boolean hasLastName = lastName != null && !lastName.isEmpty() && !"null".equals(lastName);
+        boolean hasEmail = userEmail != null && !userEmail.isEmpty() && !"null".equals(userEmail);
+
+        if (hasFirstName && hasLastName) {
+            displayName = firstName + " " + lastName;
+        } else if (hasFirstName) {
+            displayName = firstName;
+        } else if (hasLastName) {
+            displayName = lastName;
+        } else if (hasEmail) {
+            displayName = userEmail;
+        } else {
+            displayName = "";
+        }
+
+        if (!displayName.isEmpty()) {
+            tvWelcomeMessage.setText("Welcome,\n" + displayName);
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
